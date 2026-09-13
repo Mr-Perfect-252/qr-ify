@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.lifecycle.lifecycleScope
 import com.apexhub.sdk.ApexHubUpdater
-import com.apexhub.sdk.ApkInstaller
 import com.qrify.app.databinding.ActivityMainBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -43,22 +42,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         // ApexHub: check for an update on launch → dialog → download → install.
+        // checkAndPrompt handles the whole flow internally.
         lifecycleScope.launch {
             try {
                 updater.checkAndPrompt(activity = this@MainActivity)
             } catch (_: Throwable) {
                 // Never let an update-check failure crash the app.
             }
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        // Resume a pending install if the user left to grant the
-        // "install unknown apps" permission and came back.
-        try {
-            ApkInstaller.resumePendingInstall(this)
-        } catch (_: Throwable) {
         }
     }
 
