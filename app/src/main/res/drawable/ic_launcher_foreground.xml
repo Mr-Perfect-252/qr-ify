@@ -1,0 +1,20 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Finder pattern outer squares + data modules (white) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M30,30h18v18h-18z M60,30h18v18h-18z M30,60h18v18h-18z
+                          M54,54h6v6h-6z M66,54h6v6h-6z M54,66h6v6h-6z
+                          M66,66h6v6h-6z M72,60h6v6h-6z M60,72h6v6h-6z M72,72h6v6h-6z" />
+    <!-- Purple ring cut-outs -->
+    <path
+        android:fillColor="#6750A4"
+        android:pathData="M33,33h12v12h-12z M63,33h12v12h-12z M33,63h12v12h-12z" />
+    <!-- Finder pattern center dots (white) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M36,36h6v6h-6z M66,36h6v6h-6z M36,66h6v6h-6z" />
+</vector>

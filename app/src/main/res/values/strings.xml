@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">QR-ify</string>
+    <string name="tagline">Turn any URL into a QR code</string>
+    <string name="hint_url">Enter a URL or text</string>
+    <string name="generate">Generate QR</string>
+    <string name="share_qr">Share QR</string>
+    <string name="qr_content_desc">Generated QR code</string>
+    <string name="qr_for">QR code for %1$s</string>
+    <string name="error_empty">Please enter a URL or some text</string>
+    <string name="error_generate">Could not generate QR code</string>
+</resources>
