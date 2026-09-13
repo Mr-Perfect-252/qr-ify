@@ -112,7 +112,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 FileProvider.getUriForFile(
                     this@MainActivity,
-                    "$packageName.fileprovider",
+                    "$packageName.qrprovider",
                     file
                 )
             }

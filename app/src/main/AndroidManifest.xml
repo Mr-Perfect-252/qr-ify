@@ -24,10 +24,12 @@
             </intent-filter>
         </activity>
 
-        <!-- Used to share the generated QR image via ACTION_SEND. -->
+        <!-- Used to share the generated QR image via ACTION_SEND.
+             Uses a dedicated subclass + a distinct authority so it doesn't
+             clash with the ApexHub SDK's own FileProvider. -->
         <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="${applicationId}.fileprovider"
+            android:name=".QrFileProvider"
+            android:authorities="${applicationId}.qrprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
