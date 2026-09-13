@@ -24,7 +24,7 @@ class QrifyApp : Application() {
             config = ApexHubConfig(
                 publicKey = BuildConfig.APEXHUB_PUBLIC_KEY,
                 packageName = BuildConfig.APEXHUB_PACKAGE,
-                channel = "stable",
+                channel = BuildConfig.APEXHUB_CHANNEL,
                 checkIntervalHours = 6,
                 updateStrategy = UpdateStrategy.FLEXIBLE,
                 allowMeteredNetwork = false

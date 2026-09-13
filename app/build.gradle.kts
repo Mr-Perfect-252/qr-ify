@@ -31,6 +31,27 @@ val ksKeyPassword = signingValue("keyPassword", "SIGNING_KEY_PASSWORD")
 val hasReleaseSigning =
     ksStoreFile != null && ksStorePassword != null && ksKeyAlias != null && ksKeyPassword != null
 
+// ---------------------------------------------------------------------------
+// ApexHub OTA configuration — committed & editable in apexhub.properties.
+// Precedence: Gradle -P property / CI secret  >  apexhub.properties  >  default
+// ---------------------------------------------------------------------------
+val apexHubPropertiesFile = rootProject.file("apexhub.properties")
+val apexHubProperties = Properties().apply {
+    if (apexHubPropertiesFile.exists()) {
+        apexHubPropertiesFile.inputStream().use { load(it) }
+    }
+}
+
+fun apexHubValue(key: String, default: String): String =
+    (project.findProperty(key) as String?)?.takeIf { it.isNotBlank() }
+        ?: (apexHubProperties[key] as String?)?.takeIf { it.isNotBlank() }
+        ?: default
+
+val apexHubPublicKey = apexHubValue("APEXHUB_PUBLIC_KEY", "pk_live_REPLACE_ME")
+val apexHubAppId = apexHubValue("APEXHUB_APP_ID", "app_REPLACE_ME")
+val apexHubPackage = apexHubValue("APEXHUB_PACKAGE", "com.qrify.app")
+val apexHubChannel = apexHubValue("APEXHUB_CHANNEL", "stable")
+
 android {
     namespace = "com.qrify.app"
     compileSdk = 34
@@ -42,12 +63,12 @@ android {
         versionCode = 1
         versionName = "1.0.0"
 
-        // ApexHub OTA configuration. Replace with your real values from the
-        // ApexHub Console (Settings tab). Left as placeholders so the project
-        // compiles out of the box; update-checks simply no-op until set.
-        buildConfigField("String", "APEXHUB_PUBLIC_KEY", "\"${project.findProperty("APEXHUB_PUBLIC_KEY") ?: "pk_live_REPLACE_ME"}\"")
-        buildConfigField("String", "APEXHUB_APP_ID", "\"${project.findProperty("APEXHUB_APP_ID") ?: "app_REPLACE_ME"}\"")
-        buildConfigField("String", "APEXHUB_PACKAGE", "\"com.qrify.app\"")
+        // ApexHub OTA configuration — sourced from apexhub.properties (or a
+        // -P override / CI secret). Edit apexhub.properties to change these.
+        buildConfigField("String", "APEXHUB_PUBLIC_KEY", "\"$apexHubPublicKey\"")
+        buildConfigField("String", "APEXHUB_APP_ID", "\"$apexHubAppId\"")
+        buildConfigField("String", "APEXHUB_PACKAGE", "\"$apexHubPackage\"")
+        buildConfigField("String", "APEXHUB_CHANNEL", "\"$apexHubChannel\"")
     }
 
     signingConfigs {
