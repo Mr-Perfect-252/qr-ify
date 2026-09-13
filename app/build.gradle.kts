@@ -120,7 +120,7 @@ dependencies {
     // ApexHub Android SDK — OTA auto-updates, background checks, analytics.
     // Published on Maven Central; pulls its own transitive deps (okhttp,
     // gson, WorkManager, coroutines, appcompat).
-    implementation("io.github.mr-perfect-252:sdk:1.0.0")
+    implementation("io.github.mr-perfect-252:sdk:1.0.1")
 
     // QR code generation (pure-Java, no camera/scanner needed).
     implementation("com.google.zxing:core:3.5.3")
